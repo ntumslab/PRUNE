@@ -23,7 +23,7 @@ Run **TriFac-Rank** on the sample graph:
     python src/main.py --inputgraph sample/graph.edgelist
 
 #### Options
-Check out optional arguments such as learning rate, epochs, GPU usage by:
+Check out optional arguments such as *learning rate*, *epochs*, *GPU usage* by:
 
     python src/main.py --help
 
@@ -40,7 +40,7 @@ A comma-separated table of embeddings, the k-th row represents the k-th node's e
 
     node_0  embed_dim1, embed_dim2, ...
     node_1  embed_dim1, embed_dim2, ...
-    ...
+            ...
 
 ## Requirements
 Install all dependencies:
