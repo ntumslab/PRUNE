@@ -1,8 +1,8 @@
 """
-Implementation of TriFac-Rank.
+Implementation of PRUNE.
 Author: Yi-An Lai
 For more details, refer to the paper:
-Preserving Proximity and Global Ranking for Node Embedding
+PRUNE: Preserving Proximity and Global Ranking for Network Embedding
 Yi-An Lai*, Chin-Chi Hsu*, Wen-Hao Chen, Ming-Han Feng, and Shou-De Lin
 Advances in Neural Information Processing Systems (NIPS), 2017
 """
@@ -10,14 +10,14 @@ Advances in Neural Information Processing Systems (NIPS), 2017
 import argparse
 import numpy as np
 
-from TriFac_Rank import run_TriFac_Rank
+from PRUNE import run_PRUNE
 
 
 def parse_args():
     '''
-    Parses TriFac_Rank arguments.
+    Parses PRUNE arguments.
     '''
-    parser = argparse.ArgumentParser(description="Run TriFac_Rank.")
+    parser = argparse.ArgumentParser(description="Run PRUNE.")
 
     parser.add_argument('--inputgraph', nargs='?',
                         default='sample/graph.edgelist',
@@ -64,12 +64,12 @@ def main(args):
     graph = np.loadtxt(args.inputgraph).astype(np.int32)
     nodeCount = graph.max() + 1
 
-    # TriFac-Rank: node embeddings
-    embeddings = run_TriFac_Rank(args.lamb, graph, nodeCount,
-                                 args.dimension, args.learning_rate,
-                                 args.epoch, args.gpu_fraction,
-                                 args.batchsize, args.print_every_epoch,
-                                 save_cp=args.save_checkpoints)
+    # PRUNE: node embeddings
+    embeddings = run_PRUNE(args.lamb, graph, nodeCount,
+                           args.dimension, args.learning_rate,
+                           args.epoch, args.gpu_fraction,
+                           args.batchsize, args.print_every_epoch,
+                           save_cp=args.save_checkpoints)
     np.savetxt(args.output, embeddings, delimiter=',')
 
 

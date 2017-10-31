@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-# Reference implementation of "TriFac-Rank"
+# Reference implementation of "PRUNE"
 # Author: Yi-An Lai
-# Paper: Preserving Proximity and Global Ranking for Node Embedding
+# PRUNE: Preserving Proximity and Global Ranking for Network Embedding
 # Yi-An Lai*, Chin-Chi Hsu*, Wen-Hao Chen, Ming-Han Feng, and Shou-De Lin
 # Advances in Neural Information Processing Systems (NIPS), 2017
 
@@ -11,7 +11,7 @@ import tensorflow as tf
 
 def forward_pass(featX, scope, n_emb, n_latent):
     """
-    TriFac-Rank's generative process for each node
+    PRUNE's generative process for each node
     Generate ranking score and proximity representation
     """
     with tf.variable_scope(scope):
@@ -40,9 +40,9 @@ def forward_pass(featX, scope, n_emb, n_latent):
     return rank_pi, prox_rep
 
 
-def initialize_trifac_rank(scope_name, n_emb, learning_rate, nodeCount, lamb):
+def initialize_PRUNE(scope_name, n_emb, learning_rate, nodeCount, lamb):
     """
-    Initialize TriFac-Rank
+    Initialize PRUNE
     """
     # proximity representation dimension
     n_latent = 64
@@ -105,12 +105,12 @@ def initialize_trifac_rank(scope_name, n_emb, learning_rate, nodeCount, lamb):
     return inits
 
 
-def train_trifac_rank(init, optimizer, cost, node_heads, node_tails,
-                      indeg, outdeg, pmis, embeddings, scope_name, epoch,
-                      graph, PMI_values, batchsize, out_degrees, in_degrees,
-                      gpu_fraction=0.20, print_every_epoch=3, save_cp=False):
+def train_PRUNE(init, optimizer, cost, node_heads, node_tails,
+                indeg, outdeg, pmis, embeddings, scope_name, epoch,
+                graph, PMI_values, batchsize, out_degrees, in_degrees,
+                gpu_fraction=0.20, print_every_epoch=3, save_cp=False):
     """
-    TriFac-Rank training process
+    PRUNE training process
     """
     # set 0 values to 1 to avoid divided by zero
     out_degrees[out_degrees == 0] = 1
@@ -158,7 +158,7 @@ def train_trifac_rank(init, optimizer, cost, node_heads, node_tails,
 
                 # TensorFlow checkpoints
                 if save_cp and (n + 1) % 10 == 0:
-                    saver.save(sess, './checkpoints/TriFac_Rank.ckpt',
+                    saver.save(sess, './checkpoints/PRUNE.ckpt',
                                global_step=(n + 1))
 
             final_embeddings = sess.run(embeddings)
@@ -183,12 +183,12 @@ def compute_PMI(graph, nodeCount, in_degrees, out_degrees, alpha=5.0):
     return PMI_values
 
 
-def run_TriFac_Rank(lamb, graph, nodeCount, n_emb, learning_rate, epoch,
-                    gpu_fraction=0.20, batchsize=1024, print_every_epoch=1,
-                    scope_name='default', save_cp=False):
+def run_PRUNE(lamb, graph, nodeCount, n_emb, learning_rate, epoch,
+              gpu_fraction=0.20, batchsize=1024, print_every_epoch=1,
+              scope_name='default', save_cp=False):
     """
     Compute indegrees, outdegrees, PMI
-    Initialize and train TriFac-Rank for node embeddings
+    Initialize and train PRUNE for node embeddings
     """
     # compute indegrees, outdegrees, PMI values
     out_degrees = np.zeros(nodeCount)
@@ -199,20 +199,20 @@ def run_TriFac_Rank(lamb, graph, nodeCount, n_emb, learning_rate, epoch,
 
     PMI_values = compute_PMI(graph, nodeCount, in_degrees, out_degrees)
 
-    # initialize TriFac-Rank
-    inits = initialize_trifac_rank(scope_name, n_emb, learning_rate,
-                                   nodeCount, lamb)
+    # initialize PRUNE
+    inits = initialize_PRUNE(scope_name, n_emb, learning_rate,
+                             nodeCount, lamb)
 
     (init, optimizer, cost, heads_pi, heads_prox, tails_pi, tails_prox,
      W_shared, node_heads, node_tails, indeg, outdeg, pmis, embeddings) = inits
 
-    # train TriFac-Rank
-    embeddings = train_trifac_rank(init, optimizer, cost, node_heads,
-                                   node_tails, indeg, outdeg, pmis, embeddings,
-                                   scope_name, epoch, graph, PMI_values,
-                                   batchsize, out_degrees, in_degrees,
-                                   gpu_fraction=gpu_fraction,
-                                   print_every_epoch=print_every_epoch,
-                                   save_cp=save_cp)
+    # train PRUNE
+    embeddings = train_PRUNE(init, optimizer, cost, node_heads,
+                             node_tails, indeg, outdeg, pmis, embeddings,
+                             scope_name, epoch, graph, PMI_values,
+                             batchsize, out_degrees, in_degrees,
+                             gpu_fraction=gpu_fraction,
+                             print_every_epoch=print_every_epoch,
+                             save_cp=save_cp)
 
     return embeddings

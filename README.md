@@ -1,24 +1,24 @@
-# TriFac-Rank
-[![Build Status](https://travis-ci.org/ntumslab/TriFac_Rank.svg?branch=master)](https://travis-ci.org/ntumslab/TriFac_Rank)
+# PRUNE
+[![Build Status](https://travis-ci.org/ntumslab/PRUNE.svg?branch=master)](https://travis-ci.org/ntumslab/PRUNE)
 
-**TriFac-Rank** is an unsupervised generative approach for network embedding.
+**PRUNE** is an unsupervised generative approach for network embedding.
 
-Design properties **TriFac-Rank** satisfies: scalability, asymmetry, unity and simplicity.
+Design properties **PRUNE** satisfies: scalability, asymmetry, unity and simplicity.
 
 The approach entails a multi-task Siamese neural network to connect embeddings and our objective, preserving global node ranking and local proximity of nodes.
 
-Deeper analysis for the proposed architecture and objective can be found in the paper (please see - *TriFac_Rank_nips_preprint.pdf*): <br>
-> Preserving Proximity and Global Ranking for Node Embedding<br>
+Deeper analysis for the proposed architecture and objective can be found in the paper (please see - *[PRUNE](https://nips.cc/Conferences/2017/Schedule?showEvent=9301)*): <br>
+> PRUNE: Preserving Proximity and Global Ranking for Network Embedding<br>
 > Yi-An Lai+, Chin-Chi Hsu+, Wen-Hao Chen, Ming-Han Feng, and Shou-De Lin<br>
 > Advances in Neural Information Processing Systems (NIPS), 2017 <br>
 > +: These authors contributed equally to this paper.
 
-This repo contains reference implementation of **TriFac-Rank**.
+This repo contains reference implementation of **PRUNE**.
 
 ## Usage
 
 ### Example
-Run **TriFac-Rank** on the sample graph:
+Run **PRUNE** on the sample graph:
 
     python src/main.py --inputgraph sample/graph.edgelist
 
@@ -52,9 +52,9 @@ This implementation is built on `tensorflow 1.1.0`. If using Mac OS or encounter
 
 ## Citing
 
-If you find **TriFac-Rank** useful in your research, please consider citing the paper:
+If you find **PRUNE** useful in your research, please consider citing the paper:
 
-    Preserving Proximity and Global Ranking for Node Embedding, NIPS 2017.
+    PRUNE: Preserving Proximity and Global Ranking for Network Embedding, NIPS 2017.
 
 ## Miscellaneous
 
