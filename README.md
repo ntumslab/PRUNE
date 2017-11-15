@@ -58,4 +58,4 @@ If you find **PRUNE** useful in your research, please consider citing the paper:
 
 ## Miscellaneous
 
-If having any questions, please contact us: Yi-An Lai (<b99202031@ntu.edu.tw>) or Chin-Chi Hsu (<chinchi@iis.sinica.edu.tw>).
+If having any questions, please contact us: Yi-An Lai (<b99202031@ntu.edu.tw>) or Chin-Chi Hsu (<chinchi@iis.sinica.edu.tw>). 
