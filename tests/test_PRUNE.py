@@ -9,4 +9,3 @@ class Test_PRUNE(TestCase):
 
     def test_running(self):
         os.system('python src/main.py')
-        os.remove('graph.embeddings')
