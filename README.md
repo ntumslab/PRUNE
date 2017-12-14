@@ -47,7 +47,7 @@ Install all dependencies:
 
     pip install -r requirements.txt
 
-This implementation is built on `tensorflow 1.1.0`. If using Mac OS or encountering other problems, see detailed TensorFlow installing guild at: 
+This implementation is built on `tensorflow 1.1.0`. If using Mac OS or encountering other problems, see detailed TensorFlow installation guild at: 
 [https://www.tensorflow.org/versions/r1.1/install/](https://www.tensorflow.org/versions/r1.1/install/)
 
 ## Citing
