@@ -73,5 +73,6 @@ def main(args):
     np.savetxt(args.output, embeddings, delimiter=',')
 
 
-args = parse_args()
-main(args)
+if __name__ == "__main__":
+    args = parse_args()
+    main(args)
